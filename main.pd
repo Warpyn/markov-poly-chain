@@ -1,0 +1,179 @@
+#N canvas 226 63 1201 680 12;
+#X obj 50 100 bng 30 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 140 100 bng 30 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 50 140 loadfile;
+#X obj 50 170 createMatrix;
+#X obj 430 260 tgl 28 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 430 330 bng 27 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 300 480 pitchGen, f 10;
+#X obj 550 100 bng 29 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 550 140 s reset;
+#X text 30 70 choose file;
+#X text 120 70 read file into matrix;
+#X text 300 70 start chain;
+#X obj 430 730 output~;
+#X obj 430 700 *~;
+#X msg 730 680 0;
+#X msg 790 680 1;
+#X obj 430 300 metro 1000;
+#X obj 370 450 bng 25 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 430 600 +~;
+#X obj 450 480 pitchGen, f 10;
+#X obj 520 450 bng 25 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 430 100 bng 30 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X text 550 70 clear matrix;
+#X text 430 70 stop chain;
+#X obj 300 100 bng 31 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 640 330 delay 10;
+#X obj 300 520 voice;
+#X obj 450 520 voice;
+#X text 700 70 set metro freq;
+#X obj 700 180 s metroFreq;
+#X floatatom 700 100 5 0 0 0 - - -, f 5;
+#X obj 740 140 loadbang;
+#X msg 740 160 1000;
+#X obj 700 130 f;
+#X obj 740 100 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 300 140 s start;
+#X obj 430 140 s stop;
+#X obj 790 650 r start;
+#X obj 730 650 r stop;
+#X obj 530 280 r metroFreq;
+#X obj 600 600 +~;
+#X obj 430 670 +~;
+#X obj 600 480 pitchGen, f 10;
+#X obj 680 450 bng 25 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 800 480 pitchGen, f 10;
+#X obj 870 450 bng 25 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 600 520 voice;
+#X obj 800 520 voice;
+#X text 100 490 but \, uses same transition matrix \, so we pick a
+different starting pitch for other voices, f 17;
+#X obj 640 300 r start;
+#X obj 430 220 r start;
+#X obj 520 220 r stop;
+#X floatatom 900 100 5 0 0 0 - - -, f 5;
+#X floatatom 950 100 5 0 0 0 - - -, f 5;
+#X floatatom 1000 100 5 0 0 0 - - -, f 5;
+#X obj 850 130 f;
+#X obj 900 130 f;
+#X obj 950 130 f;
+#X obj 1000 130 f;
+#X obj 1050 100 bng 19 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X floatatom 850 100 5 0 0 0 - - -, f 5;
+#X obj 850 160 pack f f f f, f 22;
+#X text 850 40 set custom voice offsets;
+#X obj 850 190 s offsets;
+#X msg 1100 40 0 0 0 0;
+#X msg 1180 40 -12 -7 0 7;
+#X msg 1280 40 -7 0 7 14;
+#X text 1100 10 load offset presets;
+#X obj 1100 80 unpack f f f f;
+#X obj 1200 470 r offsets;
+#X text 1200 440 load offsets;
+#X obj 1200 500 unpack f f f f;
+#X text 950 450 <-- start new chain;
+#X text 950 500 <-- mute voice toggle;
+#X obj 380 500 tgl 16 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 530 500 tgl 16 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 680 500 tgl 16 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 880 500 tgl 16 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X text 720 270 creates new starting pitches for other voices & start
+toggles, f 13;
+#X text 100 430 each voice is its own chain, f 17;
+#X text 1100 140 // -9 \, -4 \, 3 \, 8;
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 3 0;
+#X connect 4 0 16 0;
+#X connect 5 0 6 0;
+#X connect 5 0 19 0;
+#X connect 5 0 42 0;
+#X connect 5 0 44 0;
+#X connect 6 0 26 0;
+#X connect 7 0 8 0;
+#X connect 13 0 12 0;
+#X connect 13 0 12 1;
+#X connect 14 0 13 1;
+#X connect 15 0 13 1;
+#X connect 16 0 5 0;
+#X connect 17 0 6 1;
+#X connect 18 0 41 0;
+#X connect 19 0 27 0;
+#X connect 20 0 19 1;
+#X connect 21 0 36 0;
+#X connect 24 0 35 0;
+#X connect 25 0 20 0;
+#X connect 25 0 43 0;
+#X connect 25 0 45 0;
+#X connect 25 0 74 0;
+#X connect 25 0 75 0;
+#X connect 25 0 76 0;
+#X connect 25 0 77 0;
+#X connect 26 0 18 0;
+#X connect 27 0 18 1;
+#X connect 30 0 33 1;
+#X connect 31 0 32 0;
+#X connect 32 0 29 0;
+#X connect 33 0 29 0;
+#X connect 34 0 33 0;
+#X connect 37 0 15 0;
+#X connect 38 0 14 0;
+#X connect 39 0 16 1;
+#X connect 40 0 41 1;
+#X connect 41 0 13 0;
+#X connect 42 0 46 0;
+#X connect 43 0 42 1;
+#X connect 44 0 47 0;
+#X connect 45 0 44 1;
+#X connect 46 0 40 0;
+#X connect 47 0 40 1;
+#X connect 49 0 25 0;
+#X connect 50 0 4 0;
+#X connect 51 0 4 0;
+#X connect 52 0 56 1;
+#X connect 53 0 57 1;
+#X connect 54 0 58 1;
+#X connect 55 0 61 0;
+#X connect 56 0 61 1;
+#X connect 57 0 61 2;
+#X connect 58 0 61 3;
+#X connect 59 0 55 0;
+#X connect 59 0 58 0;
+#X connect 59 0 57 0;
+#X connect 59 0 56 0;
+#X connect 60 0 55 1;
+#X connect 61 0 63 0;
+#X connect 64 0 68 0;
+#X connect 65 0 68 0;
+#X connect 66 0 68 0;
+#X connect 68 0 60 0;
+#X connect 68 1 52 0;
+#X connect 68 2 53 0;
+#X connect 68 3 54 0;
+#X connect 69 0 71 0;
+#X connect 71 0 26 1;
+#X connect 71 1 27 1;
+#X connect 71 2 46 1;
+#X connect 71 3 47 1;
+#X connect 74 0 26 2;
+#X connect 75 0 27 2;
+#X connect 76 0 46 2;
+#X connect 77 0 47 2;
